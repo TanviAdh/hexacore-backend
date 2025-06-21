@@ -3,9 +3,9 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 # contextmanager: managing the whole lifecycle
 from app.core.config.db_config import load_env_config 
-from database.session import Base, engine
+from app.database.session import Base, engine
 # from models import ConsultationForm, InquiryForm, Users
-from router.root_router import root_router
+from app.router.root_router import root_router
 from fastapi.exceptions import RequestValidationError
 from app.core.globalexception.error_response import validation_exception_handler
 from starlette.exceptions import HTTPException as StarletteHTTPException
