@@ -11,6 +11,16 @@ from app.core.globalexception.error_response import validation_exception_handler
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.core.globalexception.exceptions import not_found_exception_handler
 from app.core.middleware.jwt_middleware import JWTMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://hexacorenepal.com"],  # Change this to your domain for security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 app=FastAPI(title="FastAPI Emp CRUD")
 
