@@ -1,0 +1,34 @@
+fastapi
+uvicorn
+pydantic
+pydantic[email]
+sqlalchemy
+python-dotenv
+python-jose[cryptography]
+cryptography
+bcrypt
+passlib[bcrypt]
+psycopg2-binary
+pathlib
+
+# python-jose: token related specifications
+# cryptography: for token encryption and decryption
+# passlib[bcrypt] - for password hashing (encryption and decryption)
+# uvicorn - server for our fastapi
+# sqlalchemy - should create the tables for us ORM 
+# asyncpg - Postgre
+# https://rustup.rs/
+# fastapi
+# # to develop restAPI
+# uvicorn
+# #   to run the server
+# pydantic
+# # validate data
+# sqlalchemy
+# #   to interact with the database (ORM) - object relational mapping , based on entity specification in python
+# python-dotenv
+# # to load environment variables from .env file
+# psycopg2-binary
+# # to connect to PostgreSQL database
+# pathlib 
+# to include the path

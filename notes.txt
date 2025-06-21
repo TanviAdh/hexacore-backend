@@ -1,0 +1,14 @@
+to access /api/role/create
+enter token -> get it from /api/auth/login
+
+class rel1:
+rel1=relationship("Class_rel2", back_populates="rel2")
+
+class rel2:
+rel2=relationship("Class_rel1", back_populates="rel1")
+
+role_id= Column (Integer, ForeignKey("roles.id", ondelete= "CASCADE"),nullable=False)
+the roles here in the roles.id is the tablename
+
+UI:
+For one department id: multiple projects

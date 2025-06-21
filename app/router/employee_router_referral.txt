@@ -1,0 +1,201 @@
+# from fastapi import APIRouter, Depends
+# from sqlalchemy.orm import Session
+# from core.jwt.jwt_utils import create_access_token
+# from database.deps import get_db
+# from app.schemas.login_schema import EmployeeCreate, EmployeeResponse, EmployeeIDResponse, EmployeeUpdate,EmployeeTokenResponse, EntireResponse
+# from repos.employee_repo import EmployeeRepo
+# from services.employee_service import EmployeeService
+# from app.services.inquiry_form_service import RoleService
+# from app.services.login_service import UsersService
+# from services.attendance_service import AttendanceService
+# from services.department_service import DepartmentService
+# from fastapi import HTTPException
+# from schemas.role_schema import RoleResponse
+
+# router = APIRouter(prefix="/employee", tags=["Employee"])
+# # router instance of APIRouter is created to define a new router for the employee module.
+# # handle the complete employee related routing
+
+# # end point : /api/employee/create
+# # type : public
+# # method : POST
+# # description : create a new employee
+# # request body : {
+# #     "first_name": "John",
+# #     "last_name": "Doe",
+# #     "email": "john.doe@example.com"
+# #     "phone": "1234567890",
+# # }
+# # response body : {
+# #     "id": 1,
+# #     "first_name": "John",
+# #     "last_name": "Doe",
+# #     "email": "john.doe@example.com"
+# #     "phone": "1234567890",
+# # }
+
+# # @router.post("/create", response_model=EmployeeTokenResponse)
+# # def create_employee(employee: EmployeeCreate, db: Session = Depends(get_db)):
+# #     service = EmployeeService(db)
+# #     emp = service.create_employee(employee)
+# #     access_token=create_access_token(data={"sub": emp.email, "employee_id":emp.id})
+# #     res = {"email": emp.email, "employee_id": emp.id, "access_token": access_token, "token_type": "bearer"}
+# #     return res
+
+
+# # @router.post("/create1")
+# # # to send multiple prefix list to employeeresponse
+# # def create_employee(employee: EmployeeCreate, db: Session = Depends(get_db)):
+# #     # handler function to create a new employee
+# #     # data collection happens in handler
+# #     # object will be consumed by service
+# #     service = EmployeeService(db)
+# #     emp,user,role = service.create_employee(employee)
+# #     # email, empid, ID(not considered), token, token type
+# #     # get the access token
+# #     access_token=create_access_token(data={"sub": emp.email, "employee_id":emp.id})
+# #     res={"employee": {"id":emp.id, "first_name": emp.first_name, "last_name": emp.last_name, "email": emp.email, "phone_number": emp.phone_number},
+# #           "access_token": access_token, "token_type": "bearer", 
+# #           "user":{"id": user.id, "email": user.email, "role_id": user.role_id},
+# #           "role": {"id": role.id, "name": role.name, "description": role.description, "permissions": role.permissions, "created_at": role.created_at, "updated_at": role.updated_at}}
+# #     # res = {"email": emp.email, "employee_id": emp.id, "access_token": access_token, "token_type": "bearer"}
+# #     return res
+
+
+# @router.post("/create")
+# # to send multiple prefix list to employeeresponse
+# def create_employee(employee: EmployeeCreate, db: Session = Depends(get_db)):
+#     # handler function to create a new employee
+#     # data collection happens in handler
+#     # object will be consumed by service
+#     service = EmployeeService(db)
+#     U_service= UsersService(db)
+#     R_service= RoleService(db)
+#     d_service= DepartmentService(db)
+#     emp= service.create_employee(employee)
+#     user=U_service.get_user_by_email(employee.email)
+#     role=R_service.get_role_by_id(user.role_id)
+#     dept=d_service.get_department_by_id(employee.department_id)
+#     # email, empid, ID(not considered), token, token type 
+#     # get the access token 
+#     access_token=create_access_token(data={"sub": emp.email, "employee_id": emp.id})
+#     res={"employee": emp, 
+#           "access_token": access_token, "token_type": "bearer", 
+#           "user":{"id": user.id, "email": user.email, "role_id": user.role_id},
+#           "role": {"id": role.id, "name": role.name, "description": role.description, "permissions": role.permissions, "created_at": role.created_at, "updated_at": role.updated_at},
+#           "department": dept}
+#     # res = {"email": emp.email, "employee_id": emp.id, "access_token": access_token, "token_type": "bearer"}
+#     return res
+
+# @router.post("/create2", response_model=EntireResponse)
+# # to send multiple prefix list to employeeresponse
+# def create_employee(employee: EmployeeCreate, db: Session = Depends(get_db)):
+#     # handler function to create a new employee
+#     # data collection happens in handler
+#     # object will be consumed by service
+#     service = EmployeeService(db)
+#     U_service= UsersService(db)
+#     R_service= RoleService(db)
+#     emp= service.create_employee(employee)
+#     user=U_service.get_user_by_email(employee.email)
+#     role=R_service.get_role_by_id(user.role_id)
+#     # email, empid, ID(not considered), token, token type
+#     # get the access token
+#     access_token=create_access_token(data={"sub": emp.email, "employee_id":emp.id})
+#     res = EntireResponse(
+#         employee=EmployeeResponse(
+#             id=emp.id,
+#             first_name=emp.first_name,
+#             last_name=emp.last_name,
+#             email=emp.email,
+#             phone_number=emp.phone_number,
+#         ),
+#         access_token=access_token,
+#         token_type="bearer",
+#         user={
+#             "id": user.id,
+#             "email": user.email,
+#             "role_id": user.role_id
+#         },
+#         role=RoleResponse(
+#             id=role.id,
+#             name=role.name,
+#             description=role.description,
+#             permissions=role.permissions,
+#             created_at=role.created_at,
+#             updated_at=role.updated_at,
+#         )
+#     )
+#     return res
+
+# # end point : /api/employee
+# # type : public
+# # method : GET
+# # description : get employee
+# # response body : [
+# #     {
+# #         "id": 1,
+# #         "first_name": "John",
+# #         "last_name": "Doe",
+# #         "email": "john.doe@example.com"
+# #         "phone": "1234567890",
+# #     },
+
+# @router.get("/", response_model=list[EmployeeResponse])
+# def get_employee(db: Session = Depends(get_db)):
+#     service = EmployeeService(db)
+#     employees= service.get_all_employees()
+#     if len(employees) > 0:
+#         return employees
+#     else:
+#         raise HTTPException(status_code=404, detail= "No employees found")
+
+# @router.get("/{employee_id}", response_model=EmployeeResponse)
+# def get_employee_by_id(employee_id: int, db: Session = Depends(get_db)):
+#     service = EmployeeService(db)
+#     employee = service.get_employee_by_id(employee_id)
+#     return employee
+#     # exception handling is done in the service layer
+
+# # @router.get("/{employee_id}", response_model=EmployeeIDResponse)
+# # def get_employee(employee_id: int, db: Session = Depends(get_db)):
+# #     service = EmployeeService(db)
+# #     return {"employee_id":employee_id}
+# # only fetching the employee id from the url and returning it in the response body
+
+# @router.put("/update/{id}", response_model=EmployeeResponse)
+# def update_employee(id: int, updates: EmployeeUpdate, db: Session = Depends(get_db)):
+#     service = EmployeeService(db)
+#     updated_employee = service.update_employee(id, updates)
+#     if not updated_employee:
+#             raise HTTPException(status_code=404, detail="employee not found")
+#     return updated_employee
+
+# @router.delete("/delete/{id}")
+# def delete_employee(id:int, db: Session=Depends(get_db)):
+#     service= EmployeeService(db)
+#     deleted = service.delete_employee(id)
+#     if not deleted:
+#          raise HTTPException(status_code=404, detail="Employee not found")
+#     return {"message": f"Employee {id} deleted successfully"}
+
+# @router.get("/attendance/{id}")
+# def fetch_attendance(id: int, db: Session = Depends(get_db)):
+#     e_service = EmployeeService(db)
+#     employee = e_service.get_employee_by_id(id)
+#     a_service= AttendanceService(db)
+#     attendances = a_service.fetch_attendance_by_employee(id)
+#     # res={"Department": {"id":department.id, "dname": department.dname, "location": department.location, "description": department.description},
+#     #      "Projects": [] }
+#     res={"Employee": employee,
+#          "Attendance": []}
+#     for attendance in attendances:
+#         # p_res={"id": project.id,
+#         #     "name":project.name,
+#         #     "description":project.description,
+#         #     "start_date": project.start_date,
+#         #     "end_date": project.end_date,
+#         #     "department_id": project.department_id}
+#         p_res=attendance
+#         res["Attendance"].append(p_res)
+#     return res
