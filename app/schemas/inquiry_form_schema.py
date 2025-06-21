@@ -12,7 +12,7 @@ class InquiryFormBase(BaseModel):
     preferred_level: str
     preferred_course: str
     intake: str
-    scores: Optional[Dict[str, float]] = None
+    scores: Optional[str] = None
     additional_info: Optional[str] = None
     heard_from: str
 

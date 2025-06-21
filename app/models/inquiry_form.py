@@ -15,6 +15,6 @@ class InquiryForm(Base):
     preferred_level = Column(String, index=True, nullable=False)
     preferred_course = Column(String, index=True, nullable=False)
     intake= Column(String, index=True, nullable=False)
-    scores = Column(JSON, nullable=True)
+    scores = Column(String, nullable=True)
     additional_info=Column(String, nullable=True)
     heard_from = Column(String, index=True, nullable=False)
