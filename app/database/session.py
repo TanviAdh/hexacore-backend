@@ -5,7 +5,7 @@
 # To form the db_url, we need:- dialect + driver://username:password@host:port/db_name
 
 from sqlalchemy import create_engine
-from core.config.db_config import load_env_config
+from app.core.config.db_config import load_env_config
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 

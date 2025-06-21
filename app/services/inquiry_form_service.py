@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from schemas.inquiry_form_schema import InquiryFormBase, InquiryFormCreate, InquiryFormUpdate, InquiryFormResponse
-from repos.inquiry_form_repo import InquiryFormRepo
+from app.schemas.inquiry_form_schema import InquiryFormBase, InquiryFormCreate, InquiryFormUpdate, InquiryFormResponse
+from app.repos.inquiry_form_repo import InquiryFormRepo
 from fastapi import HTTPException
 
 class InquiryFormService:

@@ -1,6 +1,6 @@
 from sqlalchemy import JSON, Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
-from database.session import Base
+from app.database.session import Base
 from datetime import datetime
 
 class InquiryForm(Base):

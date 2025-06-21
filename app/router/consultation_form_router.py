@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database.deps import get_db
-from schemas.consultation_form_schema import ConsultationFormCreate, ConsultationFormUpdate, ConsultationFormResponse
-from services.consultation_form_service import ConsultationFormService
-from repos.consultation_form_repo import ConsultationFormRepo
+from app.database.deps import get_db
+from app.schemas.consultation_form_schema import ConsultationFormCreate, ConsultationFormUpdate, ConsultationFormResponse
+from app.services.consultation_form_service import ConsultationFormService
+from app.repos.consultation_form_repo import ConsultationFormRepo
 
 router = APIRouter(prefix="/consultation", tags=["Consultation"])
 

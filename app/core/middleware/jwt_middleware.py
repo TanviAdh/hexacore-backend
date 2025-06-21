@@ -1,6 +1,6 @@
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
-from core.jwt.jwt_utils import verify_token
+from app.core.jwt.jwt_utils import verify_token
 
 EXCLUDE_PATHS= ["/api/auth/login", "/api/employee/create", "/api/role/create"]
 

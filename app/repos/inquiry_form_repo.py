@@ -1,8 +1,8 @@
 # session based specifications to work on our operations
 from builtins import int, list, setattr
 from sqlalchemy.orm import Session
-from models.inquiry_form import InquiryForm
-from schemas.inquiry_form_schema import InquiryFormCreate, InquiryFormUpdate, InquiryFormResponse
+from app.models.inquiry_form import InquiryForm
+from app.schemas.inquiry_form_schema import InquiryFormCreate, InquiryFormUpdate, InquiryFormResponse
 
 class InquiryFormRepo:
     def __init__(self, db: Session):

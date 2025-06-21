@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from repos.login_repo import UsersRepo
+from app.repos.login_repo import UsersRepo
 
 class LoginService:
     def __init__(self, db:Session):

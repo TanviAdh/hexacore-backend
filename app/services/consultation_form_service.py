@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from schemas.consultation_form_schema import ConsultationFormCreate, ConsultationFormUpdate, ConsultationFormResponse
-from repos.consultation_form_repo import ConsultationFormRepo
+from app.schemas.consultation_form_schema import ConsultationFormCreate, ConsultationFormUpdate, ConsultationFormResponse
+from app.repos.consultation_form_repo import ConsultationFormRepo
 from fastapi import HTTPException
 
 class ConsultationFormService:

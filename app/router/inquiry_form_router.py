@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database.deps import get_db
-from schemas.inquiry_form_schema import InquiryFormCreate, InquiryFormUpdate, InquiryFormResponse
-from services.inquiry_form_service import InquiryFormService
-from repos.inquiry_form_repo import InquiryFormRepo
+from app.database.deps import get_db
+from app.schemas.inquiry_form_schema import InquiryFormCreate, InquiryFormUpdate, InquiryFormResponse
+from app.services.inquiry_form_service import InquiryFormService
+from app.repos.inquiry_form_repo import InquiryFormRepo
 
 router = APIRouter(prefix="/inquiry", tags=["inquiry"])
 

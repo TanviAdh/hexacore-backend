@@ -1,8 +1,8 @@
 # session based specifications to work on our operations
 from builtins import int, list, setattr
 from sqlalchemy.orm import Session
-from models.consultation_form import ConsultationForm
-from schemas.consultation_form_schema import ConsultationFormCreate, ConsultationFormUpdate, ConsultationFormResponse
+from app.models.consultation_form import ConsultationForm
+from app.schemas.consultation_form_schema import ConsultationFormCreate, ConsultationFormUpdate, ConsultationFormResponse
 
 class ConsultationFormRepo:
     def __init__(self, db: Session):
