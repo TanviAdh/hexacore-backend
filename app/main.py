@@ -13,6 +13,10 @@ from app.core.globalexception.exceptions import not_found_exception_handler
 from app.core.middleware.jwt_middleware import JWTMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 
+
+app=FastAPI(title="FastAPI Emp CRUD")
+
+# app.add_middleware(JWTMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://hexacorenepal.com"],  # Change this to your domain for security
@@ -20,12 +24,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-app=FastAPI(title="FastAPI Emp CRUD")
-
-# app.add_middleware(JWTMiddleware)
-
 router = root_router()
 app.include_router(router=router)
 # mount the root router to the FastAPI app
